@@ -1,0 +1,14 @@
+---
+# Instalación de nginx
+- name: instalar nginx
+  yum: name={{ item }} state=latest
+  with_items:
+    - nginx
+    - httpd-tools
+    - python-passlib
+
+- name: configurar nginx
+  template: src=nginx.j2 dest=/etc/nginx/nginx.conf
+
+- name: habilitar el inicio de nginx en el arranque del sistema
+  service: name=nginx state=started enabled=yes

@@ -1,0 +1,7 @@
+---
+# tasks file for nginx
+- include: centos.yml
+  when: ansible_os_family == "RedHat"
+
+- include: kibana_conf.yml
+  when: kibana_nginx is defined and kibana_nginx

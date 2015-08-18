@@ -1,0 +1,8 @@
+---
+# Configuración de nginx para kibana
+- name: crear usuario con acceso a la web de kibana
+  htpasswd: path=/etc/nginx/htpasswd.users name={{ kibana_web_user }} password={{ kibana_web_password }}
+
+- name: configurar reverse proxy para kibana
+  template: src=kibana.nginx.j2 dest=/etc/nginx/conf.d/kibana.conf
+  notify: reiniciar nginx
